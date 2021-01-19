@@ -6,7 +6,7 @@ Input a CSV file, reads it and sends a request to the Product identification API
 Receives the results output from identificationAPI and prints them to a new CSV file.
 
 
-## Getting Started
+## Getting Started <br /> 
 
 ### Dependencies
 
@@ -21,11 +21,12 @@ Install Node.js
 $ npm install 
 
 ```
+<br /> 
 libraries using: 
-    axios": "^0.21.1"
-    csvtojson": "^2.0.10"
-    dotenv": "^8.2.0"
-    json2csv ^5.0.5
+    axios": "^0.21.1"<br /> 
+    csvtojson": "^2.0.10"<br /> 
+    dotenv": "^8.2.0"<br /> 
+    json2csv ^5.0.5<br /> <br /> 
 
 
 
