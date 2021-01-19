@@ -6,9 +6,8 @@ Input a CSV file, reads it and sends a request to the Product identification API
 Receives the results output from identificationAPI and prints them to a new CSV file.
 
 
-## Getting Started <br /> 
+### Getting Started: <br /> 
 
-### Dependencies
 
 * For development, you will need Node.js installed in your environement 
 
