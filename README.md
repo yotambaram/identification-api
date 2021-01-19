@@ -1,6 +1,6 @@
 # Client to APIs
-
-## Description
+<br /> <br /> 
+## Description:
 
 Input a CSV file, reads it and sends a request to the Product identification API.
 Receives the results output from identificationAPI and prints them to a new CSV file.
@@ -29,7 +29,7 @@ libraries using:
 
 
 
-## Executing program
+## Executing program:
 
 * Open the program and run node command:
 ```
