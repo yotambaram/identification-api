@@ -1,5 +1,6 @@
 const fs = require("fs");
 const json2csv = require("json2csv");
+const Fields = require("../models/OutputFields");
 const { Parser } = json2csv;
 
 const csvWriter = (dataRes) => {
@@ -16,16 +17,12 @@ const csvWriter = (dataRes) => {
     let stringifyData = dataRes[index].data.result.products;
 
     // Here we can had any field that we want from the products array response (for example "title" is Producuts[i].title)
-    const fields = [
-      "title",
-      "matchingScores.titleMatchingScore",
-      "price.amount",
-      "category",
-      "attributes.Brand",
-      "attributes.model",
-    ];
+    
+    // var fieldss = Fields.Fields
+    // console.log(fieldss)
+    
     const json2csvParser = new Parser({
-      fields,
+      fields: Fields.Fields,
       defaultValue: "",
       includeEmptyRows: true,
     });
