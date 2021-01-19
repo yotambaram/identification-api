@@ -9,7 +9,7 @@ Receives the results output from identificationAPI and prints them to a new CSV 
 ## Getting Started: <br /> 
 
 
-* For development, you will need Node.js installed in your environement 
+* For development, you will need Node.js installed in your environment 
 
 ```
 Install Node.js

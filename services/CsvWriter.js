@@ -15,11 +15,6 @@ const csvWriter = (dataRes) => {
 
   function writeCSV(index) {
     let stringifyData = dataRes[index].data.result.products;
-
-    // Here we can had any field that we want from the products array response (for example "title" is Producuts[i].title)
-    
-    // var fieldss = Fields.Fields
-    // console.log(fieldss)
     
     const json2csvParser = new Parser({
       fields: Fields.Fields,
