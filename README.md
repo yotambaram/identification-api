@@ -1,11 +1,9 @@
 # Client to APIs
 
-Simple overview of use/purpose.
-
 ## Description
 
-Receives a CSV file, reads it and sends a request to the Product identification API.
-Receives the results and prints them to a new CSV file.
+Input a CSV file, reads it and sends a request to the Product identification API.
+Receives the results output from identificationAPI and prints them to a new CSV file.
 
 
 ## Getting Started
