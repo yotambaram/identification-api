@@ -16,17 +16,17 @@ Receives the results output from identificationAPI and prints them to a new CSV 
 Install Node.js
 
 ```
-   then, to install dependencies by run "npm install" command:
+   then, to install dependencies from "package.json" by run command line "npm install":
 ```
 $ npm install 
 
 ```
 <br /> 
 libraries using: 
-    axios": "^0.21.1"<br /> 
-    csvtojson": "^2.0.10"<br /> 
-    dotenv": "^8.2.0"<br /> 
-    json2csv ^5.0.5<br /> <br /> 
+    axios 0.21.1<br /> 
+    csvtojson ^2.0.10<br /> 
+    dotenv 8.2.0<br /> 
+    json2csv 5.0.5<br /> <br /> 
 
 
 
