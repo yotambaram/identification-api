@@ -40,4 +40,3 @@ const queryBuilder = (data) => {
 };
 
 module.exports.identificationApiClient = identificationApiClient;
-

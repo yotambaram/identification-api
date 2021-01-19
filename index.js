@@ -3,8 +3,7 @@ const util = require("util");
 const getFile = require("./services/getFile").getFile;
 const csvReader = require("./services/CsvReader").csvReader;
 const csvWriter = require("./services/CsvWriter").csvWriter;
-const identificationApiClient = require("./IdentificationApiClient")
-  .identificationApiClient;
+const identificationApiClient = require("./api/IdentificationApiClient").identificationApiClient;
 require("dotenv").config();
 
 // Using for .env file to add API ID and KEY.

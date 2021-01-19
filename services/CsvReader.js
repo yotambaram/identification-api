@@ -1,4 +1,4 @@
-const IdentificationApiRequest = require("../IdentificationApiRequest");
+const IdentificationApiRequest = require("../models/IdentificationApiRequest");
 
 const productsSearhArr = [];
 
