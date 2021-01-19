@@ -22,6 +22,7 @@ const writeCSV = (index, dataRes) => {
     includeEmptyRows: true,
   });
 
+  
   const csv = json2csvParser.parse(stringifyData);
   fs.writeFile("data.csv", csv, function (err) {
     // ### Change output path and file name here: ###
