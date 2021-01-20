@@ -1,6 +1,7 @@
 const { getFile } = require("./services/getFile");
 const { csvReader } = require("./services/CsvReader");
 const { csvWriter } = require("./services/CsvWriter");
+const { path } = require("./services/UserPrompt")
 const { identificationApiClient } = require("./api/IdentificationApiClient");
 
 require("dotenv").config();
@@ -12,10 +13,10 @@ if (process.env.NODE_ENV !== "production") {
 async function runProcess() {
   try {
     //get file path
-    //const path = await InquierBuilder.path();
-    const path = { path: "test-csv.csv" };
+    const pathInput = await path();
+    //const pathInput = { path: "test-csv.csv" };
     //get the file
-    const file = await getFile(path);
+    const file = await getFile(pathInput);
     //get data from file.
     const csvData = csvReader(file);
     //make algopix api request. The promise holding an array of request.
