@@ -3,8 +3,8 @@ const { itirateCsvHeaders } = require("../services/HeadersValidation");
 
 async function identificationApiClient(csvRowsDataArr) {
   try {
-    const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]);
-    const queriesArr = queryBuilder(csvRowsDataArr, validateHeadersObj);
+    //const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]); VALIDATION
+    const queriesArr = queryBuilder(csvRowsDataArr, /*validateHeadersObj*/);
     return (apiResponseData = await Promise.all(
       identificationApiClient2(queriesArr)
     ));
@@ -30,7 +30,7 @@ const identificationApiClient2 = (queriesArr) => {
 };
 
 //TODO: Do it cleaner (headers validation, keywords - Required field, use join?)
-queryBuilder = (dataArr, validateObj) => {   ///////// <- use validateObj to validate
+queryBuilder = (dataArr, /*validateObj*/) => {   ///////// <- use validateObj to validate
   const tempQueries = [];
   const BASE_URL = "https://api.algopix.com/v3/multiItemsSearch?";
   for (let i = 0; i < dataArr.length; i++) {
