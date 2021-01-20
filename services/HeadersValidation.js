@@ -1,4 +1,4 @@
-const { keyValidation } = require("../services/InquierBuilder");
+const { keyValidation } = require("./UserPrompt");
 const { headers } = require("../models/Headers");
 const _ = require("lodash");
 const { csvHeadersReader } = require("../services/CsvReader");

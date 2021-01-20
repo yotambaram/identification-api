@@ -2,33 +2,50 @@ const axios = require("axios");
 const { itirateCsvHeaders } = require("../services/HeadersValidation");
 
 async function identificationApiClient(csvRowsDataArr) {
-  try {
-    const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]);
-    const queriesArr = queryBuilder(csvRowsDataArr, validateHeadersObj);
+  const headersObj = {
+    "X-APP-ID": process.env.X_APP_ID,
+    "X-API-KEY": process.env.X_API_KEY,
+  };
 
-    return (apiResponseData = await Promise.all(
-      identificationApiCall(queriesArr)
-    ));
+  try {
+    // Get headers from user input file
+    const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]);
+    // Build array of queries
+    const queriesArr = queryBuilder(csvRowsDataArr, validateHeadersObj);
+    // Call API
+    const apiCallsArr = queriesArr.map((queries) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          let apiCall = axios({
+            method: "get",
+            url: queries,
+            headers: headersObj,
+          }).catch( error => {
+            if (error.response) {
+              // Request made and server responded
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+          })
+          resolve(apiCall);
+        }, 2000);
+      });
+    });
+ 
+    let apiDataResult = Promise.all(apiCallsArr);
+    return apiDataResult;
   } catch (err) {
     console.log("Erorr identificationApiClient");
     console.log(err);
   }
 }
-
-const identificationApiCall = (queriesArr) => {
-  headersObj = {
-    "X-APP-ID": process.env.X_APP_ID,
-    "X-API-KEY": process.env.X_API_KEY,
-  };
-
-  return queriesArr.map((url) => {
-    return axios({
-      method: "get",
-      url: url,
-      headers: headersObj,
-    });
-  });
-};
 
 //TODO: Do it cleaner (headers validation, keywords - Required field, use join?)
 queryBuilder = (dataArr, validateObj) => {
