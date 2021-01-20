@@ -12,7 +12,7 @@ async function identificationApiClient(csvRowsDataArr) {
     const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]);
     // Build array of queries
     const queriesArr = queryBuilder(csvRowsDataArr, validateHeadersObj);
-    // Call API
+    // Make Algopix API requests
     const apiCallsArr = queriesArr.map((queries) => {
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -23,11 +23,13 @@ async function identificationApiClient(csvRowsDataArr) {
           }).catch( error => {
             if (error.response) {
               // Request made and server responded
+              console.log("Error response Algopix API requests");
               console.log(error.response.data);
               console.log(error.response.status);
               console.log(error.response.headers);
             } else if (error.request) {
               // The request was made but no response was received
+              console.log("Error request Algopix API requests");
               console.log(error.request);
             } else {
               // Something happened in setting up the request that triggered an Error
@@ -48,8 +50,8 @@ async function identificationApiClient(csvRowsDataArr) {
 }
 
 //TODO: Do it cleaner (headers validation, keywords - Required field, use join?)
-queryBuilder = (dataArr, validateObj) => {
-  ///////// <- use validateObj to validate
+// Move function to ./servies/QueryBuilder.js
+queryBuilder = (dataArr, validateObj) => { ///////// <- use validateObj to validate
   const tempQueries = [];
   const BASE_URL = "https://api.algopix.com/v3/multiItemsSearch?";
   for (let i = 0; i < dataArr.length; i++) {
