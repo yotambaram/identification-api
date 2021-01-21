@@ -1,4 +1,7 @@
 const axios = require("axios");
+const rateLimit = require('axios-rate-limit');
+
+
 const { itirateCsvHeaders } = require("../services/HeadersValidation");
 
 async function identificationApiClient(csvRowsDataArr) {
@@ -14,17 +17,16 @@ async function identificationApiClient(csvRowsDataArr) {
   }
 }
 
-const apiRequest = (queriesArr) => { 
+const apiRequest = (queriesArr) => {
   headersObj = {
     "X-APP-ID": process.env.X_APP_ID,
     "X-API-KEY": process.env.X_API_KEY,
   };
+
+  const http = rateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 1000, maxRPS: 1 })
+  
   return queriesArr.map((url) => {
-    return axios({
-      method: "get",
-      url: url,
-      headers: headersObj,
-    });
+    return http.get(url, {headers: headersObj}) // will perform immediately
   });
 };
 

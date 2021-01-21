@@ -15,15 +15,17 @@ if (process.env.NODE_ENV !== "production") {
 async function runProcess() {
   try {
     //get file path
-    const path = await InquierBuilder.path();
+    //const path = await InquierBuilder.path();
+    const path = {"path" : "test-csv.csv"}
     //get the file
     const file = await getFile(path);
     //get data from file.
     const csvData = csvReader(file);
     //make algopix api request. The promise holding an array of request.
     const apiResponseData = await identificationApiClient(csvData);
+    console.log(apiResponseData)
     //write to csv
-    csvWriter(apiResponseData);
+    //csvWriter(apiResponseData);
   } catch (err) {
     console.log("Error runProcess" + err);
    
