@@ -21,6 +21,14 @@ $ npm install
 
 ```
  
+    Key and Id required, use .env file with:
+    X-APP-ID:your api ID
+    X-API-KEY:your api KEY
+```
+.env
+
+```
+
 libraries using: 
     axios 0.21.1<br /> 
     csvtojson ^2.0.10<br /> 
