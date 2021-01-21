@@ -24,6 +24,7 @@ $ npm install
     Key and Id required, use .env file with:
     X-APP-ID:your api ID
     X-API-KEY:your api KEY
+    
 ```
 .env
 
