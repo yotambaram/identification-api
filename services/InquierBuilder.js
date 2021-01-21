@@ -5,7 +5,7 @@ module.exports = {
     inquirer.prompt([
       {
         type: "input",
-        message: "Enter file path and name",
+        message: "Enter file path and name (with .csv):",
         name: "path",
       },
     ]),

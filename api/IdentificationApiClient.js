@@ -3,10 +3,10 @@ const { itirateCsvHeaders } = require("../services/HeadersValidation");
 
 async function identificationApiClient(csvRowsDataArr) {
   try {
-    //const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]); VALIDATION
+    //const validateHeadersObj = await itirateCsvHeaders(csvRowsDataArr[0]); // <- Get headers validation obj
     const queriesArr = queryBuilder(csvRowsDataArr, /*validateHeadersObj*/);
     return (apiResponseData = await Promise.all(
-      identificationApiClient2(queriesArr)
+      apiRequest(queriesArr)
     ));
   } catch (err) {
     console.log("Erorr identificationApiClient");
@@ -14,12 +14,11 @@ async function identificationApiClient(csvRowsDataArr) {
   }
 }
 
-const identificationApiClient2 = (queriesArr) => {
+const apiRequest = (queriesArr) => { 
   headersObj = {
     "X-APP-ID": process.env.X_APP_ID,
     "X-API-KEY": process.env.X_API_KEY,
   };
-
   return queriesArr.map((url) => {
     return axios({
       method: "get",
@@ -29,20 +28,20 @@ const identificationApiClient2 = (queriesArr) => {
   });
 };
 
-//TODO: Do it cleaner (headers validation, keywords - Required field, use join?)
-queryBuilder = (dataArr, /*validateObj*/) => {   ///////// <- use validateObj to validate
+//TODO: Do it cleaner (export queryBuilder from dif service, headers validation, keywords - Required field...)
+const queryBuilder = (csvInputDataArr, /*validateObj*/) => {   ///////// <- use validateObj to validate
   const tempQueries = [];
   const BASE_URL = "https://api.algopix.com/v3/multiItemsSearch?";
-  for (let i = 0; i < dataArr.length; i++) {
-    let currentQuery = Object.keys(dataArr[i])
+  for (let i = 0; i < csvInputDataArr.length; i++) {
+    let currentQuery = Object.keys(csvInputDataArr[i])
       .filter((key) => {
-        return !dataArr[i][key] || key === "index" ? false : true;
+        return !csvInputDataArr[i][key] || key === "index" ? false : true;
       })
       .map((key) => {
         return (
           encodeURIComponent(key).replace("_", "") +
           "=" +
-          encodeURIComponent(dataArr[i][key])
+          encodeURIComponent(csvInputDataArr[i][key])
         );
       })
       .join("&");
