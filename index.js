@@ -6,8 +6,8 @@ const {csvReader} = require("./services/CsvReader");
 const {csvWriter} = require("./services/CsvWriter")
 const {identificationApiClient} = require("./api/IdentificationApiClient")
 
-require("dotenv").config();
 // Using for .env file to add API ID and KEY.
+require("dotenv").config();
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
